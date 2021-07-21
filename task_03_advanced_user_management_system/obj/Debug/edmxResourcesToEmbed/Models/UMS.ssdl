@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdvanceUMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account_type">
+    <Key>
+      <PropertyRef Name="account_type_id" />
+    </Key>
+    <Property Name="account_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="account_type_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Acc_ID" />
+    </Key>
+    <Property Name="Acc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="Address1" Type="varchar" MaxLength="100" />
+    <Property Name="Address2" Type="varchar" MaxLength="100" />
+    <Property Name="Account_Type_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account_ID" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Joining_Date" Type="date" />
+    <Property Name="Password" Type="varchar" MaxLength="16" />
+  </EntityType>
+  <Association Name="accounts_account_type_fk">
+    <End Role="Account_type" Type="Self.Account_type" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_type">
+        <PropertyRef Name="account_type_id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Account_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_ROLE_Fk">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Acc_ID" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdvanceUMSModelStoreContainer">
+    <EntitySet Name="Account_type" EntityType="Self.Account_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="accounts_account_type_fk" Association="Self.accounts_account_type_fk">
+      <End Role="Account_type" EntitySet="Account_type" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="USER_ROLE_Fk" Association="Self.USER_ROLE_Fk">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

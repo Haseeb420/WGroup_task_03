@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<h2>Profile</h2>
+
+<div class="row">
+    <div class="col-8 mx-auto">
+        <h3>Admin Profile</h3>
+        <hr />
+
+        <div class="row">
+            <div class="col my-3">
+                <label>Account_Type : </label>
+                <input type="text" value=@Session["account_type"] class="form-control" readonly>
+            </div>
+            <div class="col my-3">
+                <label>Joinning Date : </label>
+                <input type="text" class="form-control" value=@Session["joining_date"] readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col my-3">
+                <label>First Name : </label>
+                <input type="text" value=@Session["first_name"] class="form-control" readonly>
+            </div>
+            <div class="col my-3">
+                <label>Last Name : </label>
+                <input type="text" class="form-control" value=@Session["last_name"] readonly>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col my-3">
+                <label>Email : </label>
+                <input type="text" value=@Session["email"] class="form-control" readonly>
+            </div>
+            <div class="col my-3">
+                <label>Gender : </label>
+                <input type="text" class="form-control" value=@Session["gender"] readonly>
+            </div>
+        </div>
+   
+        <div class="row">
+            <div class="col my-3">
+                <label>Address 1 : </label>
+                <input type="text" value=@Session["address1"] class="form-control" readonly>
+            </div>
+            <div class="col my-3">
+                <label>Address 2 : </label>
+                <input type="text" class="form-control" value=@Session["address2"] readonly>
+            </div>
+        </div>
+    </div>
+</div>

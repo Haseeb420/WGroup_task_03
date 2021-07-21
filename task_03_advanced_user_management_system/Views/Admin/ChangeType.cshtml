@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ChangeType";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+
+@model task_03_advanced_user_management_system.Models.Account
+
+<div class="row">
+    <div class="col-10 bg-white my-3 py-3 px-4">
+        <h2 class="text-center" >Channge User Type</h2>
+        <hr />
+        <form action="/Admin/ChangeType" class="mx-auto col-4" method="post">
+            <Label class="col-form-label col-12" for="id">User_ID</Label>
+            <input type="number" class="form-control col-12" name="id" id="id" value=@Model.Acc_ID readonly />
+            <br />
+            <Label class="col-form-label col-12" for="id">User_Name</Label>
+            <input type="text" class="form-control col-12" name="name" id="name" value=@Model.Last_Name readonly />
+            <hr />
+            <Label class="col-form-label col-12" for="id">Change User Type : </Label>
+            <div class="row">
+                <div class="col-12 p-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="1" required>
+                        <label class="form-check-label" for="inlineRadio1">Admin</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="2" required>
+                        <label class="form-check-label" for="type">Customer</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="3" required>
+                        <label class="form-check-label" for="inlineRadio1">New</label>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Change Type" class="btn btn-info col-6 d-block mx-auto my-3" />
+        </form>
+    </div>
+</div>
+
+

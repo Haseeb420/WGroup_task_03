@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdvanceUMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account_type">
+    <Key>
+      <PropertyRef Name="account_type_id" />
+    </Key>
+    <Property Name="account_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="account_type_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.accounts_account_type_fk" FromRole="Account_type" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Acc_ID" />
+    </Key>
+    <Property Name="Acc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Account_Type_ID" Type="Int32" />
+    <NavigationProperty Name="Account_type" Relationship="Self.accounts_account_type_fk" FromRole="Accounts" ToRole="Account_type" />
+    <NavigationProperty Name="User_Role" Relationship="Self.USER_ROLE_Fk" FromRole="Accounts" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account_ID" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Joining_Date" Type="DateTime" Precision="0" />
+    <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="Self.USER_ROLE_Fk" FromRole="User_Role" ToRole="Accounts" />
+  </EntityType>
+  <Association Name="accounts_account_type_fk">
+    <End Role="Account_type" Type="Self.Account_type" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_type">
+        <PropertyRef Name="account_type_id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Account_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_ROLE_Fk">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Acc_ID" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdvanceUMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Account_type" EntityType="Self.Account_type" />
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" />
+    <AssociationSet Name="accounts_account_type_fk" Association="Self.accounts_account_type_fk">
+      <End Role="Account_type" EntitySet="Account_type" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="USER_ROLE_Fk" Association="Self.USER_ROLE_Fk">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

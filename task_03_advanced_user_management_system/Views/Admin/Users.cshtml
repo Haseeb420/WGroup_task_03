@@ -1,0 +1,72 @@
+﻿@model IEnumerable<task_03_advanced_user_management_system.Models.Account> 
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 p-3 my-3 bg-white">
+        <h1 class="display-4 text-center">Users</h1>
+    
+
+        <table class="table table-hover my-3">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Acc_ID)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.First_Name)
+
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Last_Name)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th scope="col">
+                        Account Type
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var account in Model)
+                {
+                    if (account.Account_Type_ID == 1)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+
+                <tr>
+                    <td>@account.Acc_ID </td>
+                    <td>@account.First_Name </td>
+                    <td>@account.Last_Name </td>
+                    <td>@account.Email </td>
+                    <td>@account.Gender </td>
+                    @if(account.Account_Type_ID==2){
+                        <td>Customer</td>
+                    }
+                    else
+                    {
+                        <td>New Account</td>
+                    }
+                <td>
+                    <a href="/Admin/ViewUser?id=@account.Acc_ID" class="btn btn-info">View Details</a>
+                    <a href="/Admin/ChangeType?id=@account.Acc_ID" class="btn btn-secondary">Edit</a>
+                    <a href="/Admin/Delete?id=@account.Acc_ID" class="btn btn-danger">Delete</a>
+                </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

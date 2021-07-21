@@ -1,0 +1,95 @@
+﻿@model task_03_advanced_user_management_system.Models.ProfileModel
+
+@{
+    ViewBag.Title = "UpdateProfile";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<div class="row p-5">
+    <div class="col-8 mx-auto bg-white pB-3">
+        <h2>UpdateProfile</h2>
+
+        @using (Html.BeginForm("UpdateProfile","User",FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "Please Enter Valid Attributes...", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col my-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.First_Name, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class=" col-12">
+                        @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col my-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Last_Name, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class=" col-12">
+                        @Html.EditorFor(model => model.Last_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col my-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class=" col-12">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col my-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label  col-12" })
+                    <div class=" col-12">
+                        @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col my-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address1, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class=" col-12">
+                        @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col my-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address2, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <input type="submit" value="Create" class="btn btn-info col-6 d-block  mx-auto" />
+        </div>
+
+    </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>

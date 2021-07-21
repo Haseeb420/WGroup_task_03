@@ -1,0 +1,30 @@
+﻿*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body {
+  background:#f1f1f1;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.login_header {
+    padding-bottom: 15px;
+    border-bottom: 3px solid #007bff;
+}
+.input-validation-error {
+    background-color: #ff8b8b6e;
+}

@@ -1,0 +1,103 @@
+﻿@model task_03_advanced_user_management_system.Models.SignUpModel
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row my-5 p-3">
+    <div class="col-8 mx-auto my-3 bg-white p-3">
+
+        @if (ViewBag.loginStatus != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.loginStatus
+            </div>
+            <hr />
+        }
+        <h2 class="text-center">Create New Account Here</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row my-3">
+                    <div class="col">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label font-weight-normal h5 col-12" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-12  font-weight-normal h5" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-12 font-weight-normal h5" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-12 font-weight-normal h5" })
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(model => model.Gender, "Male", new { @class = "form-check-input" })
+                                 <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(model => model.Gender, "Female", new { @class = "form-check-input" })
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(model => model.Gender, "Other",new { @class= "form-check-input" })
+
+                                
+                                <label class="form-check-label" for="inlineRadio3">Other</label>
+                            </div>
+                            <br />
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-12 font-weight-normal h5" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-12 font-weight-normal h5" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Create Account" class="btn btn-success col-6 d-block mx-auto my-3" />
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to Home", "Index")
+        </div>
+
+    </div>
+</div>
+
